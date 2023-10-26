@@ -1,0 +1,20 @@
+{
+  "name": "tests",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test:laravel": "BASE_URL=http://127.0.0.1:8000 playwright test e2e/",
+    "test:laravel:interactive": "BASE_URL=http://127.0.0.1:8000 playwright test e2e/ --ui",
+
+    "test:flow": "BASE_URL=http://127.0.0.1:8081 playwright test e2e/",
+    "test:flow:interactive": "BASE_URL=http://127.0.0.1:8081 playwright test e2e/ --ui"
+
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@playwright/test": "^1.39.0"
+  }
+}

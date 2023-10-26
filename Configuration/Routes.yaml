@@ -1,10 +1,9 @@
 -
-  name: 'Test'
-  uriPattern: 'test/index'
+  name: 'Livewire Conformance Tests'
+  uriPattern: 'livewire-conformance-tests/{@action}'
   defaults:
     '@package': 'Sandstorm.Livewire'
     '@controller': 'Test'
-    '@action': 'index'
 
 -
   name: 'Test'

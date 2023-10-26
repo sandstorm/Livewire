@@ -1,10 +1,13 @@
 <?php
 
-namespace Sandstorm\Livewire\Example;
+namespace Sandstorm\Livewire\Controller\TestComponents;
 
 use Sandstorm\Livewire\Core\LivewireComponentInterface;
 
-class CounterComponent implements LivewireComponentInterface
+/**
+ * SEE: Tests/laravel/app/Livewire/SimpleActionAndModel.php
+ */
+class SimpleActionAndModelComponent implements LivewireComponentInterface
 {
 
     private function __construct(
@@ -25,8 +28,25 @@ class CounterComponent implements LivewireComponentInterface
     {
         return sprintf(
             <<<EOF
-<div>%s, %s <button wire:click="increase">Increase</button> <button wire:click="decrease">Decrease</button></div>
-        <input type="text" wire:model.live="title">
+<div>
+        <h1 data-testid="counter">Counter: %s</h1>
+        <span data-testid="title-output">%s</span>
+        <input type="text" wire:model.live="title" />
+
+        <button
+            type="button"
+            wire:click="increase"
+        >
+            Increase
+        </button>
+
+        <button
+            type="button"
+            wire:click="decrease"
+        >
+            Decrease
+        </button>
+</div>
 EOF, $this->counter, $this->title
         );
     }

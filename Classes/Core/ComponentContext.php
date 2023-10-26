@@ -2,6 +2,9 @@
 
 namespace Sandstorm\Livewire\Core;
 
+/**
+ * @internal ugly, refactor
+ */
 class ComponentContext
 {
     public $effects = [];
