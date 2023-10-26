@@ -32,7 +32,7 @@ namespace Sandstorm\Livewire\Core;
 interface LivewireComponentInterface extends \JsonSerializable
 {
 
-    public static function create(): self;
+    public static function create(array $args = null): self;
 
     public static function deserialize(array $state): self;
 

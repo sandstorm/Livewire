@@ -64,7 +64,7 @@ EOF, $this->counter, $this->title
         };
     }
 
-    public static function create(): LivewireComponentInterface
+    public static function create(array $args = null): LivewireComponentInterface
     {
         return new static();
     }
