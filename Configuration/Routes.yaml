@@ -1,0 +1,15 @@
+-
+  name: 'Test'
+  uriPattern: 'test/index'
+  defaults:
+    '@package': 'Sandstorm.Livewire'
+    '@controller': 'Test'
+    '@action': 'index'
+
+-
+  name: 'Test'
+  uriPattern: 'livewire/update'
+  defaults:
+    '@package': 'Sandstorm.Livewire'
+    '@controller': 'LivewireUpdate'
+    '@action': 'update'

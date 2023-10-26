@@ -1,0 +1,10 @@
+{
+    "name": "sandstorm/livewire",
+    "type": "neos-package",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Sandstorm\\Livewire\\": "Classes"
+        }
+    }
+}
