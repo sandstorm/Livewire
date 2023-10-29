@@ -7,7 +7,7 @@ privilegeTargets:
   'Neos\Flow\Security\Authorization\Privilege\Method\MethodPrivilege':
 
     'Sandstorm.Livewire:Test':
-      matcher: 'method(Sandstorm\Livewire\Controller\TestController->(simpleActionAndModel)Action())'
+      matcher: 'method(Sandstorm\Livewire\Controller\TestController->(actionAttributes|simpleActionAndModel)Action())'
 
     'Sandstorm.Livewire:LivewireUpdate':
       matcher: 'method(Sandstorm\Livewire\Controller\LivewireUpdateController->(update)Action())'

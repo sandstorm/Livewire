@@ -12,7 +12,42 @@ source ./dev_utilities.sh
 
 set -e
 
+pwd=$(pwd)
+
 ######### TASKS #########
+
+# install the laravel dependencies and the stuff needed for e2e tests
+function install() {
+  pushd Tests/Laravel
+  composer install
+  popd
+
+  pushd Tests
+  npm install
+  popd
+}
+
+# start the Flow development server, and the Laravel application
+function start() {
+  trap terminate SIGINT
+  terminate(){
+    _log_green "Exiting all servers"
+    pkill -SIGINT -P $$
+    exit
+  }
+
+  start-flow &
+  start-laravel &
+  wait
+}
+
+function start-flow {
+  $pwd/../../flow server:run
+}
+
+function start-laravel {
+  $pwd/Tests/Laravel/artisan serve
+}
 
 # Update Livewire
 function update_livewire_script() {

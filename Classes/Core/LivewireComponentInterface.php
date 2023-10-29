@@ -36,9 +36,9 @@ interface LivewireComponentInterface extends \JsonSerializable
 
     public static function deserialize(array $state): self;
 
-    public function dispatchAction(string $action, array $params);
+    public function dispatchAction(string $action, array $params): ActionResult;
 
-    public function updateState(string $state, mixed $value): void;
+    public function updateState(string $state, mixed $value): UpdateStateResult;
 
     public function render(): string;
 }

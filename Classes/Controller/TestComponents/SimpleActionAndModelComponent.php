@@ -2,7 +2,9 @@
 
 namespace Sandstorm\Livewire\Controller\TestComponents;
 
+use Sandstorm\Livewire\Core\ActionResult;
 use Sandstorm\Livewire\Core\LivewireComponentInterface;
+use Sandstorm\Livewire\Core\UpdateStateResult;
 
 /**
  * SEE: Tests/laravel/app/Livewire/SimpleActionAndModel.php
@@ -56,12 +58,14 @@ EOF, $this->counter, $this->title
         return get_object_vars($this);
     }
 
-    public function dispatchAction(string $action, array $params): void
+    public function dispatchAction(string $action, array $params): ActionResult
     {
-        match($action) {
+        $result = match($action) {
             'increase' => $this->increase(),
             'decrease' => $this->decrease(),
         };
+
+        return ActionResult::create($result);
     }
 
     public static function create(array $args = null): LivewireComponentInterface
@@ -79,10 +83,12 @@ EOF, $this->counter, $this->title
         $this->counter--;
     }
 
-    public function updateState(string $state, mixed $value): void
+    public function updateState(string $state, mixed $value): UpdateStateResult
     {
         match($state) {
             'title' => $this->title = $value
         };
+
+        return UpdateStateResult::create();
     }
 }

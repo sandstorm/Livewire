@@ -88,12 +88,18 @@ class LivewireComponentRenderer
 
         // $this->pushOntoComponentStack($component);
 
-        $this->updateProperties($component, $updates);
+        $updateStateResults = $this->updateProperties($component, $updates);
 
-        $this->callMethods($component, $calls, $context);
+        $actionResults = $this->callMethods($component, $calls, $context);
+        $actionResults = $actionResults->withUpdateStateResults($updateStateResults);
 
-        if ($html = $this->renderDuringUpdate($component, $id)) {
+        if ($actionResults->empty() || $actionResults->withRendering) {
+            $html = $this->renderDuringUpdate($component, $id);
             $context->addEffect('html', $html);
+        }
+
+        if (count($actionResults->js)) {
+            $context->addEffect('xjs', $actionResults->js);
         }
 
         $snapshot = $this->snapshot($component, $context, $id);
@@ -103,11 +109,13 @@ class LivewireComponentRenderer
         return [$snapshot, $context->effects];
     }
 
-    protected function updateProperties(LivewireComponentInterface $component, $updates): void
+    protected function updateProperties(LivewireComponentInterface $component, $updates): UpdateStateResults
     {
+        $results = UpdateStateResults::create();
         foreach ($updates as $path => $value) {
-            $component->updateState($path, $value);
+            $results = $results->merge($component->updateState($path, $value));
         }
+        return $results;
     }
 
 
@@ -137,10 +145,9 @@ class LivewireComponentRenderer
         return $snapshot;
     }
 
-    protected function callMethods(LivewireComponentInterface $root, array $calls, ComponentContext $context): void
+    protected function callMethods(LivewireComponentInterface $root, array $calls, ComponentContext $context): ActionResults
     {
-        $returns = [];
-
+        $results = ActionResults::create();
         foreach ($calls as $call) {
             $method = $call['method'];
             $params = $call['params'];
@@ -154,10 +161,11 @@ class LivewireComponentRenderer
                 $earlyReturn = $return;
             };
 
-            $returns[] = $root->dispatchAction($method, $params);
+            $results = $results->merge($root->dispatchAction($method, $params));
         }
 
-        $context->addEffect('returns', $returns);
+        $context->addEffect('returns', $results->returnValues);
+        return $results;
     }
 
 
