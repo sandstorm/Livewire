@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/livewire-conformance-tests/actionAttributes', \App\Livewire\ActionAttributes::class);
 Route::get('/livewire-conformance-tests/simpleActionAndModel', \App\Livewire\SimpleActionAndModel::class);
 Route::get('/livewire-conformance-tests/actionWithRedirect', \App\Livewire\ActionWithRedirect::class);
 Route::get('/livewire-conformance-tests/controller', function () {

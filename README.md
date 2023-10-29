@@ -51,10 +51,12 @@ npm run test:flow:interactive
 - [ ] HMAC Security fixen / validieren
 - [ ] lock property from updates (i guess irrelevant, because of explicit method)
 - [ ] wire:confirm (sollte schon gehen, testen)
-- [ ] action parameters (sollte schon gehen)
-- [ ] action return values (sollte schon gehen)
-- [ ] Livewires "hybrid" JS functions
-- [ ] "Renderless" attribute above action method?! // skipRender
+- [ ] action parameters (sollte schon gehen) **Test written**
+- [ ] action return values (sollte schon gehen) **Test written**
+- [ ] Livewires "hybrid" JS functions **Test written**
+  - Livewire's "hybrid" JavaScript functions -- not needed (can be done client side) 
+  - Evaluating one-off JavaScript expressions
+- [ ] "Renderless" attribute above action method?! // skipRender **Test written** 
 - [ ] form field validation // validation errors??
   - [ ] "Updated" can return a value (like Validation rules)
 - [ ] events from browser to backend ?? -> not needed, actions!
